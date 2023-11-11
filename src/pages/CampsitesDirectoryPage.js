@@ -11,7 +11,6 @@ const CampsitesDirectoryPage = () => {
 
     return (
       <Container>
-        <SubHeader current="Directory" />
         <Row>
           <Col sm="5" md="7">
             <CampsitesList setCampsiteId={setCampsiteId} />
