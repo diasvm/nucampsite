@@ -34,7 +34,6 @@ export const fetchPartners = createAsyncThunk(
             state.isLoading = false;
             state.errMsg = '';
             state.partnersArray = mapImageURL(action.payload);
-            console.log("partners44 - Fulfilled ", state.partnersArray);
         },
         [fetchPartners.rejected]: (state, action) => {
             state.isLoading = false;

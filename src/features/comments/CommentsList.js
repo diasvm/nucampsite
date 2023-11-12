@@ -1,12 +1,33 @@
 import { useSelector } from 'react-redux';
+import { Row, Col, Collapse } from "reactstrap";
 import CommentForm from "./CommentForm";
-import { Col } from "reactstrap";
 import Comment from "./Comment";
 import { selectCommentsByCampsiteId } from "./commentsSlice";
+import Error from "../../components/Error";
+import Loading from "../../components/Loading";
 
 
 const CommentsList = ({ campsiteId }) => {
   const comments = useSelector(selectCommentsByCampsiteId(campsiteId));
+
+  const isLoading = useSelector((state) => state.campsites.isLoading);
+  const errMsg = useSelector((state) => state.campsites.errMsg);
+
+  if (isLoading) {
+    return (
+      <Row>
+        <Loading />
+      </Row>
+    );
+  }
+
+  if (errMsg) {
+    return (
+      <Row>
+        <Error errMsg={errMsg} />
+      </Row>
+    );
+  }
 
   if (comments && comments.length > 0) {
     return (
