@@ -28,10 +28,7 @@ export const postComment = createAsyncThunk(
     });
 
     if (!response.ok) {
-      return Promise.reject(
-        "Your comment could not be posted\nError: " +
-          (response.error ? response.error.message : "Fetch failed")
-      );
+      return Promise.reject(response.status);
     }
 
     const data = await response.json();
@@ -73,6 +70,12 @@ const commentsSlice = createSlice({
       state.isLoading = false;
       state.errMsg = action.error ? action.error.message : "fetch failed";
     },
+    [postComment.rejected]: (state, action) => {
+      alert(
+        'Your comment could not be posted\nError: ' + 
+          (action.error ? action.error.message : 'Fetch failed')
+      );
+    }
   },
 });
 
