@@ -10,8 +10,8 @@ import Loading from "../../components/Loading";
 const CommentsList = ({ campsiteId }) => {
   const comments = useSelector(selectCommentsByCampsiteId(campsiteId));
 
-  const isLoading = useSelector((state) => state.campsites.isLoading);
-  const errMsg = useSelector((state) => state.campsites.errMsg);
+  const isLoading = useSelector((state) => state.comments.isLoading);
+  const errMsg = useSelector((state) => state.comments.errMsg);
 
   if (isLoading) {
     return (
@@ -23,9 +23,9 @@ const CommentsList = ({ campsiteId }) => {
 
   if (errMsg) {
     return (
-      <Row>
+      <Col>
         <Error errMsg={errMsg} />
-      </Row>
+      </Col>
     );
   }
 
